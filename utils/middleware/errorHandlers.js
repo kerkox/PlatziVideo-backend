@@ -15,7 +15,7 @@ function logErrors(err, req, res, next) {
 }
 
 function wrapErrors(err, req, res, next) { // eslint-disable-line
-  if(!Error.isBoom){
+  if(!err.isBoom){
     next(boom.badImplementation(err));
   }
   next(err);
@@ -23,8 +23,8 @@ function wrapErrors(err, req, res, next) { // eslint-disable-line
 
 function errorHandler(err, req, res, next) { // eslint-disable-line
   const { output: {statusCode, payload } } = err;
-  res.status(statusCode);
-  res.json(withErrorStack(payload, err.stack));
+  console.log("statusCode", statusCode)
+  res.status(statusCode).json(withErrorStack(payload, err.stack));
 }
 
 module.exports = {
