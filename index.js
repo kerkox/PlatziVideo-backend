@@ -5,14 +5,16 @@ const app = express();
 const { config } = require('./config/index');
 const moviesApi = require('./routes/movies');
 
-const { logErrors, errorHandler } = require('./utils/middleware/errorHandlers')
+const { logErrors, errorHandler, wrapErrors } = require('./utils/middleware/errorHandlers')
 
 // body parser
 app.use(express.json());
 
 moviesApi(app);
 
+// Errors middleware
 app.use(logErrors);
+app.use(wrapErrors);
 app.use(errorHandler);
 
 app.get('/', function(req, res) {
