@@ -1,7 +1,9 @@
 const boom = require('@hapi/boom');
+const joi = require('@hapi/joi');
 
-function validate() { // eslint-disable-line
-  return false;
+function validate(data, schema) { // eslint-disable-line
+  const { error } = joi.validate(data, schema);
+  return error;
 }
 
 function validationHandler(schema, check = "body") { // eslint-disable-line
