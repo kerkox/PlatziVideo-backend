@@ -157,7 +157,12 @@ function filteredMoviesMock(tag) {
   return moviesMock.filter(movie => movie.tags.includes(tag));
 }
 
-class MovieServiceMock {
+class MoviesServiceMock {
+
+  constructor() {
+
+  }
+
   async getMovies() {
     return Promise.resolve(moviesMock);
   }
@@ -170,5 +175,5 @@ class MovieServiceMock {
 module.exports = {
   moviesMock,
   filteredMoviesMock,
-  MovieServiceMock
+  MoviesServiceMock
 };
